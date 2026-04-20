@@ -1,0 +1,833 @@
+{
+	"words": [
+		{
+			"word": "COMPASS",
+			"hints": [
+				"Points to stillness",
+				"Lost without it",
+				"Circle that commands direction"
+			]
+		},
+		{
+			"word": "MIRROR",
+			"hints": [
+				"Honest only in reverse",
+				"Holds what stands before it",
+				"Silent truth-teller"
+			]
+		},
+		{
+			"word": "VOLCANO",
+			"hints": [
+				"Earth's pressure valve",
+				"Sleeps, then erupts fury",
+				"Mountain with inner rage"
+			]
+		},
+		{
+			"word": "HOURGLASS",
+			"hints": [
+				"Counts by falling",
+				"Gravity governs its truth",
+				"Flip to restart fate"
+			]
+		},
+		{
+			"word": "TELESCOPE",
+			"hints": [
+				"Pulls distant light closer",
+				"Shrinks the infinite",
+				"Gaze stretches beyond reach"
+			]
+		},
+		{
+			"word": "LABYRINTH",
+			"hints": [
+				"Designed to confuse seekers",
+				"Center hides its secret",
+				"Turn follows endless turn"
+			]
+		},
+		{
+			"word": "FOSSIL",
+			"hints": [
+				"Stone remembers the living",
+				"Time pressed into rock",
+				"Ancient proof beneath our feet"
+			]
+		},
+		{
+			"word": "PENDULUM",
+			"hints": [
+				"Never rests at center",
+				"Tick demands its partner",
+				"Swings to mark the moment"
+			]
+		},
+		{
+			"word": "ECLIPSE",
+			"hints": [
+				"One blocks another's shine",
+				"Rare alignment steals the light",
+				"Shadow crosses the familiar"
+			]
+		},
+		{
+			"word": "QUILL",
+			"hints": [
+				"Bird lent its sharpness",
+				"Dips to leave a mark",
+				"Wings once, now writes"
+			]
+		},
+		{
+			"word": "MIRAGE",
+			"hints": [
+				"Thirst creates it",
+				"Closer you get, farther it flees",
+				"Desert's cruel promise"
+			]
+		},
+		{
+			"word": "LANTERN",
+			"hints": [
+				"Cupped flame travels safely",
+				"Guides through the starless",
+				"Warmth held behind glass"
+			]
+		},
+		{
+			"word": "FJORD",
+			"hints": [
+				"Glacier carved its walls",
+				"Sea crept into the mountains",
+				"Cold water between cliffs"
+			]
+		},
+		{
+			"word": "PRISM",
+			"hints": [
+				"Splits what seems pure",
+				"White hides many within",
+				"Reveals light's secret identity"
+			]
+		},
+		{
+			"word": "COBWEB",
+			"hints": [
+				"Built by patience",
+				"Abandoned trap still waits",
+				"Dust settles on old plans"
+			]
+		},
+		{
+			"word": "NOMAD",
+			"hints": [
+				"Home is always ahead",
+				"Roots weigh nothing",
+				"Horizon is the only address"
+			]
+		},
+		{
+			"word": "RIDDLE",
+			"hints": [
+				"Answer hides in plain sight",
+				"Question that questions back",
+				"Speak it wrong, miss it"
+			]
+		},
+		{
+			"word": "STALAGMITE",
+			"hints": [
+				"Drips build it slowly",
+				"Reaches from the floor up",
+				"Cave's patient upward growth"
+			]
+		},
+		{
+			"word": "SEXTANT",
+			"hints": [
+				"Measures sky against sea",
+				"Navigator's angular eye",
+				"Stars help fix your place"
+			]
+		},
+		{
+			"word": "PHANTOM",
+			"hints": [
+				"Seen by those who seek",
+				"Presence leaves no proof",
+				"Lingers where it once lived"
+			]
+		},
+		{
+			"word": "QUICKSAND",
+			"hints": [
+				"Stillness is the escape",
+				"Struggle deepens the trap",
+				"Ground that drinks movement"
+			]
+		},
+		{
+			"word": "VENOM",
+			"hints": [
+				"Nature's chemical warning",
+				"Small bite, large consequence",
+				"Carried quietly by the timid"
+			]
+		},
+		{
+			"word": "MOSAIC",
+			"hints": [
+				"Broken pieces tell a story",
+				"Whole only from far away",
+				"Fragments placed with intent"
+			]
+		},
+		{
+			"word": "TUNDRA",
+			"hints": [
+				"Ground stays frozen beneath",
+				"Sparse life endures the cold",
+				"Wide, flat, unyielding silence"
+			]
+		},
+		{
+			"word": "COVENANT",
+			"hints": [
+				"Sealed beyond a handshake",
+				"Binds what words alone cannot",
+				"Broken at great cost"
+			]
+		},
+		{
+			"word": "EMBER",
+			"hints": [
+				"Flame's quiet remnant",
+				"Breathe on it carefully",
+				"Ash covers hidden heat"
+			]
+		},
+		{
+			"word": "VORTEX",
+			"hints": [
+				"Center pulls everything inward",
+				"Spin creates its own gravity",
+				"Escape requires going with it"
+			]
+		},
+		{
+			"word": "LEGEND",
+			"hints": [
+				"Lived once, now larger",
+				"Time stretches the truth",
+				"Story outlasts the person"
+			]
+		},
+		{
+			"word": "ABYSS",
+			"hints": [
+				"Depth without a floor",
+				"Stare long enough, it stares back",
+				"Edge warns, but draws forward"
+			]
+		},
+		{
+			"word": "CHRYSALIS",
+			"hints": [
+				"Change happens in hiding",
+				"Soft shell holds transformation",
+				"Patience precedes the wings"
+			]
+		},
+		{
+			"word": "CIPHER",
+			"hints": [
+				"Meaning locked in pattern",
+				"Key decides its truth",
+				"Noise to the uninitiated"
+			]
+		},
+		{
+			"word": "SOLSTICE",
+			"hints": [
+				"Day tips its balance",
+				"Sun reaches its extreme",
+				"Marks the year's turning point"
+			]
+		},
+		{
+			"word": "RELIC",
+			"hints": [
+				"Outlived its era",
+				"Held for what it remembers",
+				"Past made touchable"
+			]
+		},
+		{
+			"__comment": "Hollywood personalities Start",
+			"word": "BEYONCÉ",
+			"hints": [
+				"Workers crown their ruler",
+				"Yellow venom, sweet purpose",
+				"Sour fruit, iconic vessel"
+			]
+		},
+		{
+			"word": "ELVIS",
+			"hints": [
+				"Hips once sparked a scandal",
+				"Blue suede, untouchable ground",
+				"Memphis still mourns loudly"
+			]
+		},
+		{
+			"word": "MADONNA",
+			"hints": [
+				"Cones reshaped fashion history",
+				"Reinvention outlasts every era",
+				"Material world, immaterial soul"
+			]
+		},
+		{
+			"word": "SWIFT",
+			"hints": [
+				"Shakes more than just hands",
+				"Cats guard her archives",
+				"Each era, new disguise"
+			]
+		},
+		{
+			"word": "JOLIE",
+			"hints": [
+				"Ancient tombs launched her legend",
+				"Blood worn close to skin",
+				"Six nations call her mother"
+			]
+		},
+		{
+			"word": "MERCURY",
+			"hints": [
+				"Bohemian roads led to glory",
+				"Theatrics eclipsed the illness",
+				"A planet carries his weight"
+			]
+		},
+		{
+			"word": "DICAPRIO",
+			"hints": [
+				"Icebergs once blocked his gold",
+				"A bear finally delivered justice",
+				"Canvas holds his best scene"
+			]
+		},
+		{
+			"word": "MONROE",
+			"hints": [
+				"Wind betrayed her modesty",
+				"Diamonds argued her case",
+				"Candles burn short but bright"
+			]
+		},
+		{
+			"word": "PHOENIX",
+			"hints": [
+				"Ashes birth a new form",
+				"Desert city, scorching ambition",
+				"Green greasepaint hides the chaos"
+			]
+		},
+		{
+			"word": "PRESLEY",
+			"hints": [
+				"Graceland holds an empty throne",
+				"Velvet collar, swiveling legacy",
+				"Sideburns outlived the man"
+			]
+		},
+		{
+			"__comment": "Bollywood personalities Start",
+			"word": "SHAHRUKH",
+			"hints": [
+				"Arms stretched wide, a signature stance",
+				"From TV screens to silver thrones",
+				"Initials spell a royal title"
+			]
+		},
+		{
+			"word": "DEEPIKA",
+			"hints": [
+				"Named after a flame that illuminates",
+				"Shuttlecock before spotlight",
+				"Dimples became her trademark currency"
+			]
+		},
+		{
+			"word": "SALMAN",
+			"hints": [
+				"A bracelet never leaves his wrist",
+				"Eid releases worship his arrival",
+				"Shirtless scenes sparked a fitness era"
+			]
+		},
+		{
+			"word": "PRIYANKA",
+			"hints": [
+				"Crown before camera, always",
+				"Two nations, one face",
+				"Desi girl gone global"
+			]
+		},
+		{
+			"word": "RANBIR",
+			"hints": [
+				"Grandfather's legacy shadows every role",
+				"Blue jersey bleeds passion off-screen",
+				"Kapoor clan's youngest crown bearer"
+			]
+		},
+		{
+			"word": "ARIJIT",
+			"hints": [
+				"Heartbreaks sound better through his throat",
+				"Rose from reality stages quietly",
+				"Eyes closed, mic held, souls shaken"
+			]
+		},
+		{
+			"word": "KATRINA",
+			"hints": [
+				"Born where the Thames flows",
+				"Dance floors fear her discipline",
+				"Surname borrowed from a river valley"
+			]
+		},
+		{
+			"word": "RANVEER",
+			"hints": [
+				"Outfits louder than dialogues always",
+				"Married the perfectionist's daughter",
+				"Energy bottled would power cities"
+			]
+		},
+		{
+			"word": "ALIA",
+			"hints": [
+				"Trolled for geography, rewrote the script",
+				"Filmmaker's daughter, not his shadow",
+				"Panda costume made her relatable"
+			]
+		},
+		{
+			"word": "HRITHIK",
+			"hints": [
+				"Six fingers sparked a superstar myth",
+				"Greek god comparison born in 2000",
+				"Hips move like no Indian should"
+			]
+		},
+		{
+			"word": "SHREYA",
+			"hints": [
+				"Classical roots, film branches spread wide",
+				"Awards shelf bends under her weight",
+				"Voice mimics instruments without trying"
+			]
+		},
+		{
+			"word": "AKSHAY",
+			"hints": [
+				"Passport holds a maple leaf stamp",
+				"Four releases yearly, clockwork precision",
+				"Martial arts before masala films"
+			]
+		},
+		{
+			"word": "VIDYA",
+			"hints": [
+				"Saree became her rebellion uniform",
+				"Solo films cracked the hero myth",
+				"Named after the goddess of knowledge"
+			]
+		},
+		{
+			"word": "SONU",
+			"hints": [
+				"Pandemic turned him into a saviour",
+				"High notes held without visible effort",
+				"Real hero title earned off-screen"
+			]
+		},
+		{
+			"word": "KAREENA",
+			"hints": [
+				"Size zero sparked a nation's obsession",
+				"Begum of Pataudi by choice",
+				"Poo made selfishness oddly loveable"
+			]
+		},
+		{
+			"word": "Colosseum",
+			"hints": [
+				"Crowds roared where blood was spilled",
+				"Arches hold centuries of silence",
+				"Lions once ruled its sandy floor"
+			]
+		},
+		{
+			"__comment": "Places Start",
+			"word": "Sahara",
+			"hints": [
+				"Waves move but carry no water",
+				"Nights here betray the day's fury",
+				"Caravans vanish into its golden walls"
+			]
+		},
+		{
+			"word": "Everest",
+			"hints": [
+				"Flags freeze where clouds kneel",
+				"Every step costs double the last",
+				"The sky begins its floor here"
+			]
+		},
+		{
+			"word": "Amazon",
+			"hints": [
+				"Lungs breathe for the whole planet",
+				"Rivers hide within rivers here",
+				"Canopy swallows the sun whole"
+			]
+		},
+		{
+			"word": "Pompeii",
+			"hints": [
+				"A mountain's rage froze a city mid-breath",
+				"Shadows of lives baked into stone",
+				"Walk where ash buried an entire morning"
+			]
+		},
+		{
+			"__comment": "Famous Companies",
+			"word": "Apple",
+			"hints": [
+				"Rebels made it iconic in '84",
+				"A bite taken, yet it thrives",
+				"Newton's nemesis, Jobs' muse"
+			]
+		},
+		{
+			"word": "Amazon",
+			"hints": [
+				"Widest veins feed the mightiest body",
+				"Warriors shunned one shield arm here",
+				"Lungs of the planet breathe here"
+			]
+		},
+		{
+			"word": "Nike",
+			"hints": [
+				"Winged goddess crowned the victors",
+				"Swoosh born from a student's sketch",
+				"Just obey its two-word command"
+			]
+		},
+		{
+			"word": "Google",
+			"hints": [
+				"A misspelled infinity became its name",
+				"Crawlers weave its invisible web daily",
+				"All answers bow before its throne"
+			]
+		},
+		{
+			"word": "Tesla",
+			"hints": [
+				"Currents once lost to Edison's war",
+				"Coils still bear his forgotten name",
+				"Charged roads run silent under stars"
+			]
+		},
+		{
+			"word": "Adidas",
+			"hints": [
+				"Three stripes mark its silent claim",
+				"A cobbler's dream stitched in Bavaria",
+				"Brothers split, rivalry laced both boots"
+			]
+		},
+		{
+			"word": "Oracle",
+			"hints": [
+				"Delphi whispered fates to seeking kings",
+				"Rows and columns hold its power",
+				"Prophecy sold as structured sacred truth"
+			]
+		},
+		{
+			"word": "Visa",
+			"hints": [
+				"Borders dissolve when stamps are granted",
+				"Paper permission opens guarded gates",
+				"Wallets carry its authority worldwide"
+			]
+		},
+		{
+			"word": "Uber",
+			"hints": [
+				"German tongue says 'above all else'",
+				"Strangers drive strangers through unknown cities",
+				"Surge when skies darken and demand rises"
+			]
+		},
+		{
+			"word": "Rolex",
+			"hints": [
+				"Wrists flex power without a word",
+				"Oysters guard its waterproof soul within",
+				"Perpetual motion needs no winding hand"
+			]
+		},
+		{
+			"__comment": "Fiction Start",
+			"word": "SHIELD",
+			"hints": [
+				"Acronyms guard its identity",
+				"Eagles nest within its ranks",
+				"Secrets buried deeper than its archives"
+			]
+		},
+		{
+			"word": "KRYPTONITE",
+			"hints": [
+				"A dying star left this behind",
+				"Strength crumbles near its glow",
+				"Home holds the sharpest blade"
+			]
+		},
+		{
+			"word": "VIBRANIUM",
+			"hints": [
+				"Mountains guard its cradle",
+				"Sound surrenders to its will",
+				"A king's throne rests on it"
+			]
+		},
+		{
+			"word": "GOTHAM",
+			"hints": [
+				"Gargoyles watch its restless nights",
+				"Corruption breathes in its alleyways",
+				"A broken family built its guardian"
+			]
+		},
+		{
+			"word": "INFINITY",
+			"hints": [
+				"Six keys unlock its dominion",
+				"Balance was its twisted excuse",
+				"A snap echoed across galaxies"
+			]
+		},
+		{
+			"word": "SYMBIOTE",
+			"hints": [
+				"Hunger feeds on its host",
+				"Darkness bonds without permission",
+				"Teeth sharpen with every merge"
+			]
+		},
+		{
+			"word": "MULTIVERSE",
+			"hints": [
+				"Every choice births a new door",
+				"Variants share a face, not a fate",
+				"Cracks in reality let it bleed through"
+			]
+		},
+		{
+			"word": "WAKANDA",
+			"hints": [
+				"Isolation was its greatest armor",
+				"Panthers prowl its royal lineage",
+				"The world envied what it hid"
+			]
+		},
+		{
+			"word": "ARKHAM",
+			"hints": [
+				"Madness gets a mailing address",
+				"Its walls hold more questions than answers",
+				"Escape is just another symptom"
+			]
+		},
+		{
+			"word": "MJOLNIR",
+			"hints": [
+				"Worthiness decides its master",
+				"Storms answer to its call",
+				"Even gods struggled to lift its truth"
+			]
+		},
+		{
+			"word": "THOR",
+			"hints": [
+				"Storms obey its command",
+				"Worthy hands alone may grip",
+				"Norse skies tremble at its call"
+			]
+		},
+		{
+			"word": "VENOM",
+			"hints": [
+				"Two minds share one shell",
+				"Darkness binds the unwilling host",
+				"Forked tongue, alien hunger"
+			]
+		},
+		{
+			"word": "RIDDLER",
+			"hints": [
+				"Questions are his deadliest weapon",
+				"Green obsession haunts Gotham's nights",
+				"Answers lead deeper into traps"
+			]
+		},
+		{
+			"word": "WOLVERINE",
+			"hints": [
+				"Bones kissed by rare metal",
+				"Wounds seal before eyes blink",
+				"Wild instincts outlive all centuries"
+			]
+		},
+		{
+			"word": "MAGNETO",
+			"hints": [
+				"Invisible force bends the unyielding",
+				"Survivor turned architect of fear",
+				"Poles bow at his will"
+			]
+		},
+		{
+			"word": "AQUAMAN",
+			"hints": [
+				"Crowns rest beneath the waves",
+				"Creatures of the deep obey",
+				"Two worlds claim his blood"
+			]
+		},
+		{
+			"word": "THANOS",
+			"hints": [
+				"Balance sought through half-erased existence",
+				"Six stones complete his conviction",
+				"Purple titan kneels to no one"
+			]
+		},
+		{
+			"word": "SCARECROW",
+			"hints": [
+				"Fear itself becomes the weapon",
+				"Minds shatter without a single punch",
+				"Fields and nightmares share his name"
+			]
+		},
+		{
+			"word": "GAMORA",
+			"hints": [
+				"Raised by the galaxy's worst",
+				"Green skin hides a warrior's grief",
+				"Deadliest title earned, not given"
+			]
+		},
+		{
+			"word": "NIGHTWING",
+			"hints": [
+				"Shadow outgrew its first teacher",
+				"Bludhaven streets know his silence",
+				"Acrobat born from tragedy's wings"
+			]
+		},
+		{
+			"word": "INCEPTION",
+			"hints": [
+				"Dreams wear layers like an onion",
+				"A spinning top holds the truth",
+				"The deeper you go, time stretches"
+			]
+		},
+		{
+			"word": "TITANIC",
+			"hints": [
+				"Hubris met an iceberg's silence",
+				"Rose bloomed, Jack sank",
+				"Unsinkable was just a word"
+			]
+		},
+		{
+			"word": "MATRIX",
+			"hints": [
+				"Red or blue — choose wisely",
+				"Spoons don't exist here",
+				"Glitches reveal the cage"
+			]
+		},
+		{
+			"word": "GRAVITY",
+			"hints": [
+				"Silence screams loudest up there",
+				"Tethers are lifelines, not limits",
+				"Earth pulls the lost home"
+			]
+		},
+		{
+			"word": "PARASITE",
+			"hints": [
+				"Class lives above and below stairs",
+				"The stone carries more than luck",
+				"Flooding washes away pretense"
+			]
+		},
+		{
+			"word": "SHOLAY",
+			"hints": [
+				"Two drifters, one burning valley",
+				"A dacoit feared even the winds",
+				"Friendship forged on a moving train"
+			]
+		},
+		{
+			"word": "JOKER",
+			"hints": [
+				"Society painted his smile with wounds",
+				"Laughter is just pain's costume",
+				"One bad day rewrites a man"
+			]
+		},
+		{
+			"word": "LAGAAN",
+			"hints": [
+				"A drought-ridden village bets its burden",
+				"Eleven underdogs challenged the empire's sport",
+				"Clouds arrived when hope almost didn't"
+			]
+		},
+		{
+			"word": "INTERSTELLAR",
+			"hints": [
+				"Love was the only constant across dimensions",
+				"Crops died, so stars were sought",
+				"A bookshelf whispered the future"
+			]
+		},
+		{
+			"word": "DRISHYAM",
+			"hints": [
+				"A filmmaker's mind became the perfect alibi",
+				"The calendar held the real witness",
+				"Truth buried deep still casts shadows"
+			]
+		}
+	]
+}
