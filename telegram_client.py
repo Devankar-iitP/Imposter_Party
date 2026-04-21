@@ -18,6 +18,7 @@ import os
 import random
 from telethon import TelegramClient, events
 from telethon.errors import FloodWaitError, UserPrivacyRestrictedError
+from telethon.sessions import StringSession
 from dotenv import load_dotenv
 import logic
 
@@ -25,23 +26,17 @@ load_dotenv()  # Loads variables from .env file
 
 API_ID   = int(os.getenv("API_ID"))     # Convert to int (required by Telethon)
 API_HASH = os.getenv("API_HASH")
-SESSION  = os.getenv("SESSION", "my_session")  # Default fallback value
+SESSION  = os.getenv("SESSION")
 
-client = TelegramClient(SESSION, API_ID, API_HASH)
-client.start(phone=os.getenv("MOBILE_NUMBER"))   # Prompts for OTP on first run
-print("✅ Logged in successfully!\n")
+client = TelegramClient(StringSession(SESSION), API_ID, API_HASH)
 
-username_to_name_mapping = {}
 
 async def get_name(username: str):
-    if(username_to_name_mapping.get(username)):
-        return username_to_name_mapping[username]
-    
     try:
         user = await client.get_entity(username)
-        full_name = f"{user.first_name or "Unknown"} {user.last_name or ''}".strip()
-        username_to_name_mapping[username] = full_name
-        return full_name
+        if user.first_name:
+            return f"{user.first_name} {user.last_name or ''}".strip()
+        return username
 
     except Exception as e:
         print(f"❌ Could not fetch user to get_name: {e}", flush=True)
@@ -110,26 +105,31 @@ async def get_recent_messages(username: str, limit: int = 10):
 
 
 async def main():
+    await client.start()
+    print("✅ Logged in successfully!\n")
+
     # # Send a single message
     # await send_message("@GCSE_9693", "Hello from Telethon!")
 
-    # # Get user info
-    # await get_user_info("@GCSE_9693")
+    # Get user info
+    await get_user_info("@GCSE_9693")
 
-    # Send to multiple users
-    targets = ["@user1", "@user2", "@user3"]
-    random.shuffle(targets)
-    imposter = targets[-1]
-    await send_message(imposter, logic.random_hint)
+    # # Send to multiple users
+    # targets = ["@user1", "@user2", "@user3"]
+    # random.shuffle(targets)
+    # imposter = targets[-1]
+    # await send_message(imposter, logic.random_hint)
 
-    targets.pop()
-    await send_messages_bulk(targets, logic.random_word)
+    # targets.pop()
+    # await send_messages_bulk(targets, logic.random_word)
 
     # # Send a file
     # await send_file("@GCSE_9693", r"E:\Downloads\Anime One Piece HD Wallpaper.jpeg", caption="Testing !")
 
     # # Read recent messages
     # await get_recent_messages("@someusername")
+
+    await client.disconnect()       # cleanly disconnects before exiting
 
 if __name__ == "__main__":
     asyncio.run(main())

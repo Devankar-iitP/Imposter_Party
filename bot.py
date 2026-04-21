@@ -37,6 +37,11 @@ TOKEN = os.getenv("TOKEN")
 BOT_USERNAME = '@Imposter_Party_33_Bot'
 GROUP_FILTER = filters.ChatType.GROUPS
 
+imposter_dict = {}
+poll_options_dict = {}
+rounds_dict = {}
+
+telegram_client.client.start()
 
 # Every handler in python-telegram-bot must have exactly 2 arguments — update and context 
 # even if you don't use context in the code block
@@ -130,7 +135,8 @@ async def members_list(update: Update, chat_id):
 
 
 async def begin_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    members = await members_list(update, update.effective_chat.id)
+    chat_id = update.effective_chat.id
+    members = await members_list(update, chat_id)
     if members is None:
         return
     
@@ -143,6 +149,11 @@ Check your DMs 🙃
     
 
     random.shuffle(members)
+    imposter_dict[chat_id] = members[-1].username
+    if members[-1].first_name:
+        imposter_dict[chat_id] = f"{members[-1].first_name} {members[-1].last_name or ''}".strip()
+
+    rounds_dict[chat_id] = (1, min(len(members)-2, 3))
     result = await send_dm(context, members[-1], logic.random_hint, True)
     members.pop()
 
@@ -160,35 +171,70 @@ Check your DMs 🙃
 
 async def vote_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat_id = update.effective_chat.id
-    members = await members_list(update, chat_id)
-    if members is None:
-        return
+    if poll_options_dict.get(chat_id):
+        poll = await context.bot.send_poll(
+            chat_id=chat_id,
+            question=f"Round {rounds_dict[chat_id][0]} / {rounds_dict[chat_id][1]} : \n🕵️ Who do you think is the Imposter?",
+            options=poll_options_dict[chat_id],
+            is_anonymous=False,   # False = you can see who voted for whom
+            allows_multiple_answers=False
+        )
+    else:
+        members = await members_list(update, chat_id)
+        if members is None:
+            return
 
-    if len(members) > 10:
-        await update.message.reply_text("Voting can be done for maximum of 10 players. Do manual voting.")
-        return
+        if len(members) > 10:
+            await update.message.reply_text("Voting can be done for maximum of 10 players. Do manual voting.")
+            return
 
-    await update.message.reply_text("Voting will last only for 5 seconds. Be quick !!")
-    options = []
-    for member in members:
-        if member.first_name:
-            options.append(f"{member.first_name} {member.last_name or ''}".strip())
-        else:
-            options.append(member.username)
+        if imposter_dict.get(chat_id) is None:
+            await update.message.reply_text("Game has not begun yet. Use /begin to start game.")
+            return
 
-    poll = await context.bot.send_poll(
-        chat_id=chat_id,
-        question="🕵️ Who do you think is the Imposter?",
-        options=options,
-        is_anonymous=False,   # False = you can see who voted for whom
-        allows_multiple_answers=False
-    )
+        await update.message.reply_text("Voting will last only for 5 seconds. Be quick !!")
+        
+        options = []
+        for member in members:
+            full_name = member.username
+            if member.first_name:
+                full_name = f"{member.first_name} {member.last_name or ''}".strip()
+            options.append(full_name)
+
+        poll_options_dict[chat_id] = options
+        poll = await context.bot.send_poll(
+            chat_id=chat_id,
+            question=f"Round {rounds_dict[chat_id][0]} / {rounds_dict[chat_id][1]} : \n🕵️ Who do you think is the Imposter?",
+            options=options,
+            is_anonymous=False,   # False = you can see who voted for whom
+            allows_multiple_answers=False
+        )
 
     await asyncio.sleep(5)
     final_poll = await context.bot.stop_poll(chat_id=chat_id, message_id=poll.message_id)
     result = max(final_poll.options, key=lambda option: option.voter_count).text
-    
-    await update.message.reply_text(result)
+
+    message = ""
+    if imposter_dict[chat_id] == result:
+        message = f"""Hurray ! Imposter Found... {result} is the imposter.
+Players won the game.🏆
+"""
+        poll_options_dict[chat_id] = None
+        imposter_dict[chat_id] = None
+        rounds_dict[chat_id] = None
+    else:
+        if rounds_dict[chat_id][0] == rounds_dict[chat_id][1]:
+            message = f"Maximum limits of round reached.\n Imposter {result} won the game 😈"
+            poll_options_dict[chat_id] = None
+            imposter_dict[chat_id] = None
+            rounds_dict[chat_id] = None
+        else:
+            message = f"""Wrong try.. {result} is not the imposter. 😢
+Try again 😈
+"""
+            poll_options_dict[chat_id].remove(result)  
+
+    await update.message.reply_text(message)
 
 async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
     print(f'{update} caused error : {context.error}', flush=True)
