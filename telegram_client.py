@@ -118,10 +118,11 @@ async def main():
     # targets = ["@user1", "@user2", "@user3"]
     # random.shuffle(targets)
     # imposter = targets[-1]
-    # await send_message(imposter, logic.random_hint)
+    # word, hint = logic.get_random_word()
+    # await send_message(imposter, hint)
 
     # targets.pop()
-    # await send_messages_bulk(targets, logic.random_word)
+    # await send_messages_bulk(targets, word)
 
     # # Send a file
     # await send_file("@GCSE_9693", r"E:\Downloads\Anime One Piece HD Wallpaper.jpeg", caption="Testing !")

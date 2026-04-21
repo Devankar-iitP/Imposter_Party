@@ -154,10 +154,12 @@ Check your DMs 🙃
         imposter_dict[chat_id] = f"{members[-1].first_name} {members[-1].last_name or ''}".strip()
 
     rounds_dict[chat_id] = (1, min(len(members)-2, 3))
-    result = await send_dm(context, members[-1], logic.random_hint, True)
+    word, hint = logic.get_random_word()
+
+    result = await send_dm(context, members[-1], hint, True)
     members.pop()
 
-    tasks = [asyncio.create_task(send_dm(context, member, logic.random_word)) for member in members]
+    tasks = [asyncio.create_task(send_dm(context, member, word)) for member in members]
     results = await asyncio.gather(*tasks, return_exceptions=True)
     results.append(result)
     
@@ -166,6 +168,15 @@ Check your DMs 🙃
         await update.message.reply_text(
             f"⚠️ Couldn't DM these users (they need to /start the bot privately first):\n" + "\n".join(failed)
         )
+
+
+
+async def reveal_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    imposter = imposter_dict.get(update.effective_chat.id)
+    if imposter:
+        await update.message.reply_text(f"Imposter is {imposter} 😈")
+    else:
+        await update.message.reply_text("Begin the Game first to reveal imposter")
 
 
 
@@ -192,7 +203,7 @@ async def vote_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await update.message.reply_text("Game has not begun yet. Use /begin to start game.")
             return
 
-        await update.message.reply_text("Voting will last only for 5 seconds. Be quick !!")
+        await update.message.reply_text("Voting will last only for 7 seconds. Be quick !!")
         
         options = []
         for member in members:
@@ -210,9 +221,16 @@ async def vote_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
             allows_multiple_answers=False
         )
 
-    await asyncio.sleep(5)
+    await asyncio.sleep(7)
     final_poll = await context.bot.stop_poll(chat_id=chat_id, message_id=poll.message_id)
-    result = max(final_poll.options, key=lambda option: option.voter_count).text
+    
+    result = max(final_poll.options, key=lambda option: option.voter_count).voter_count
+    top_options = [option.text for option in final_poll.options if option.voter_count == result]
+
+    if len(top_options) > 1:
+        await update.message.reply_text("There is a tie between " + ', '.join(top_options) + '\nVote again ...')
+        await vote_command(update, context)
+        return
 
     message = ""
     if imposter_dict[chat_id] == result:
@@ -234,6 +252,7 @@ Try again 😈
 """
             poll_options_dict[chat_id].remove(result)  
 
+    rounds_dict[chat_id][0] = rounds_dict[chat_id][0] + 1
     await update.message.reply_text(message)
 
 async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -249,6 +268,7 @@ if __name__ == '__main__':
 
     app.add_handler(CommandHandler('begin', begin_command, filters=GROUP_FILTER))    # Allowed only from group chat
     app.add_handler(CommandHandler('vote', vote_command, filters=GROUP_FILTER))
+    app.add_handler(CommandHandler('reveal', reveal_command, filters=GROUP_FILTER))
 
     # Errors
     app.add_error_handler(error)
