@@ -2,6 +2,8 @@
     Telethon is used to send messages on Telegram using only on username. 
 --> open-source library built by community on top of Telegram's MTProto protocol (same protocol official app uses)
 --> safe as everything goes directly to Telegram's servers
+--> since use MTProto (persistent TCP connection to Telegram's servers) 
+    This is NOT HTTP polling and already event-driven + connection-based
 
 NOTE - Telegram aggressively detects and bans accounts that mass-message users
        Sending messages to same user --> 1 msg/second
@@ -45,7 +47,7 @@ async def get_name(username: str):
 
 async def send_message(username: str, text: str):
     # can get FloodWaitError again after waiting for e seconds --> retry finite times
-    name = get_name(username)
+    name = await get_name(username)
     while True:
         try:
             await client.send_message(username, text)
@@ -88,7 +90,7 @@ Bot      : {user.bot}
 
 
 async def send_file(username: str, file_path: str, caption: str = ""):
-    name = get_name(username)
+    name = await get_name(username)
     try:
         await client.send_file(username, file_path, caption=caption)
         print(f"✅ File sent to {name}")

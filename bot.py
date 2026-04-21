@@ -20,6 +20,11 @@ Inline mode --> feature where type bot's username + query into text box (e.g., @
 Currently no handlers in this code --> track live data 
 Eg - MessageHandler --> for messages
      PollAnswerHandler --> for polls
+
+WEBHOOK MODE:
+- Telegram push updates to your webhook URL via HTTPS POST instead of you repeatedly polling
+- Set PORT in .env (default 8443; Telegram supports 80, 88, 443, 8443)
+- python-telegram-bot registers webhook automatically on startup via run_webhook()
 """
 
 import asyncio
@@ -33,7 +38,9 @@ import telegram_client
 
 load_dotenv()
 
-TOKEN = os.getenv("TOKEN")
+TOKEN        = os.getenv("TOKEN")
+WEBHOOK_URL  = os.getenv("WEBHOOK_URL")
+ENVIRONMENT  = os.getenv("ENVIRONMENT", "local")
 BOT_USERNAME = '@Imposter_Party_33_Bot'
 GROUP_FILTER = filters.ChatType.GROUPS
 
@@ -41,7 +48,7 @@ imposter_dict = {}
 poll_options_dict = {}
 rounds_dict = {}
 
-telegram_client.client.start()
+
 
 # Every handler in python-telegram-bot must have exactly 2 arguments — update and context 
 # even if you don't use context in the code block
@@ -112,9 +119,9 @@ async def rule_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def send_dm(context, member, word, is_imposter = False):
     text = ""
     if is_imposter:
-        text = f"😈Hey Imposter ! \nYour hint is : {word}"
+        text = f"😈Hey Imposter ! \n\nYour hint is : {word}"
     else:
-        text = f"🎭 Hey @{member.username}! \nYour secret word is: {word}"
+        text = f"🎭 Hey @{member.username}! \n\nYour secret word is: {word}"
     try:
         await context.bot.send_message(chat_id=member.id, text=text)
     except Exception:
@@ -153,7 +160,7 @@ Check your DMs 🙃
     if members[-1].first_name:
         imposter_dict[chat_id] = f"{members[-1].first_name} {members[-1].last_name or ''}".strip()
 
-    rounds_dict[chat_id] = (1, min(len(members)-2, 3))
+    rounds_dict[chat_id] = [1, min(len(members)-2, 3)]
     word, hint = logic.get_random_word()
 
     result = await send_dm(context, members[-1], hint, True)
@@ -172,13 +179,16 @@ Check your DMs 🙃
 
 
 async def reveal_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    imposter = imposter_dict.get(update.effective_chat.id)
+    chat_id = update.effective_chat.id
+    imposter = imposter_dict.get(chat_id)
     if imposter:
         await update.message.reply_text(f"Imposter is {imposter} 😈")
     else:
         await update.message.reply_text("Begin the Game first to reveal imposter")
 
-
+    poll_options_dict[chat_id] = None
+    imposter_dict[chat_id] = None
+    rounds_dict[chat_id] = None
 
 async def vote_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat_id = update.effective_chat.id
@@ -203,7 +213,7 @@ async def vote_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await update.message.reply_text("Game has not begun yet. Use /begin to start game.")
             return
 
-        await update.message.reply_text("Voting will last only for 7 seconds. Be quick !!")
+        await update.message.reply_text("Voting will last only for 10 seconds. Be quick !!")
         
         options = []
         for member in members:
@@ -221,7 +231,7 @@ async def vote_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
             allows_multiple_answers=False
         )
 
-    await asyncio.sleep(7)
+    await asyncio.sleep(10)
     final_poll = await context.bot.stop_poll(chat_id=chat_id, message_id=poll.message_id)
     
     result = max(final_poll.options, key=lambda option: option.voter_count).voter_count
@@ -232,35 +242,50 @@ async def vote_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await vote_command(update, context)
         return
 
+    eliminated = top_options[0]
     message = ""
-    if imposter_dict[chat_id] == result:
-        message = f"""Hurray ! Imposter Found... {result} is the imposter.
-Players won the game.🏆
-"""
+    if imposter_dict[chat_id] == eliminated:
+        message = f"Hurray ! Imposter Found... {eliminated} is the imposter.\n\nPlayers won the game.🏆"
         poll_options_dict[chat_id] = None
         imposter_dict[chat_id] = None
         rounds_dict[chat_id] = None
     else:
         if rounds_dict[chat_id][0] == rounds_dict[chat_id][1]:
-            message = f"Maximum limits of round reached.\n Imposter {result} won the game 😈"
+            message = f"Maximum limits of round reached.\n\nImposter {imposter_dict[chat_id]} won the game 😈"
             poll_options_dict[chat_id] = None
             imposter_dict[chat_id] = None
             rounds_dict[chat_id] = None
         else:
-            message = f"""Wrong try.. {result} is not the imposter. 😢
-Try again 😈
-"""
-            poll_options_dict[chat_id].remove(result)  
+            message = f"Wrong try.. {eliminated} is not the imposter. 😢\n\nTry again 😈"
+            poll_options_dict[chat_id].remove(eliminated)
+            rounds_dict[chat_id][0] += 1
 
-    rounds_dict[chat_id][0] = rounds_dict[chat_id][0] + 1
     await update.message.reply_text(message)
 
 async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
     print(f'{update} caused error : {context.error}', flush=True)
 
 
+async def on_startup(app):
+    await telegram_client.client.connect()
+    if not await telegram_client.client.is_user_authorized():
+        print("Telethon session not authorized!", flush=True)
+
+
+async def on_shutdown(app):
+    await telegram_client.client.disconnect()
+
+
 if __name__ == '__main__':
-    app = Application.builder().token(TOKEN).build()
+    # PTB = python-telegram-bot --> below code saves "Event loop is closed" errors
+    # bcz possible that event loop of PTB and telethon are different --> Issues
+    app = (
+        Application.builder()
+        .token(TOKEN)
+        .post_init(on_startup)        # Telethon starts AFTER PTB loop is ready
+        .post_shutdown(on_shutdown)   # Telethon stops BEFORE PTB loop closes
+        .build()
+    )
 
     # Commands
     app.add_handler(CommandHandler('start', start_command))
@@ -273,6 +298,14 @@ if __name__ == '__main__':
     # Errors
     app.add_error_handler(error)
 
-    # Polls the bot
-    print('Polling...')
-    app.run_polling(poll_interval=3)
+    if os.getenv("ENVIRONMENT") == "production":
+        print('Starting webhook...')
+        app.run_webhook(
+            listen="0.0.0.0",     # binds to all interfaces so your server/container can receive traffic
+            port=8080,
+            url_path=TOKEN,       # to keep endpoint secret
+            webhook_url=f"{WEBHOOK_URL}/{TOKEN}"
+        )
+    else:
+        print('Starting polling (local dev)...')
+        app.run_polling(poll_interval=3)
