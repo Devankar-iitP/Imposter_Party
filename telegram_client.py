@@ -28,9 +28,9 @@ load_dotenv()  # Loads variables from .env file
 
 API_ID   = int(os.getenv("API_ID"))     # Convert to int (required by Telethon)
 API_HASH = os.getenv("API_HASH")
-SESSION  = os.getenv("SESSION")
+TOKEN    = os.getenv("TOKEN")
 
-client = TelegramClient(StringSession(SESSION), API_ID, API_HASH)
+client = TelegramClient("", API_ID, API_HASH)   # No authentication --> so bot can login
 
 
 async def get_name(username: str):
@@ -107,7 +107,7 @@ async def get_recent_messages(username: str, limit: int = 10):
 
 
 async def main():
-    await client.start()
+    await client.start(bot_token=TOKEN)     # So, we get normal names and not from contacts
     print("✅ Logged in successfully!\n")
 
     # # Send a single message

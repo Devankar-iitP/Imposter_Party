@@ -160,6 +160,11 @@ Check your DMs 🙃
     if members[-1].first_name:
         imposter_dict[chat_id] = f"{members[-1].first_name} {members[-1].last_name or ''}".strip()
 
+    if imposter_dict[chat_id] is None:
+        await context.bot.send_message(chat_id=members[-1].id, text="Bot cannot access your name or username. Please check !!")
+        await update.message.reply_text("Some people have issues, please resolve that first.\nProblem sent on DMs ...")
+        return
+
     rounds_dict[chat_id] = [1, min(len(members)-2, 3)]
     word, hint = logic.get_random_word()
 
@@ -212,16 +217,20 @@ async def vote_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if imposter_dict.get(chat_id) is None:
             await update.message.reply_text("Game has not begun yet. Use /begin to start game.")
             return
-
-        await update.message.reply_text("Voting will last only for 10 seconds. Be quick !!")
         
         options = []
         for member in members:
             full_name = member.username
             if member.first_name:
                 full_name = f"{member.first_name} {member.last_name or ''}".strip()
+
+            if full_name is None:
+                await context.bot.send_message(chat_id=member.id, text="Bot cannot access your name or username. Please check !!")
+                await update.message.reply_text("Some people have issues, please resolve that first.\nProblem sent on DMs ...")
+                return
             options.append(full_name)
 
+        await update.message.reply_text("Voting will last only for 10 seconds. Be quick !!")
         poll_options_dict[chat_id] = options
         poll = await context.bot.send_poll(
             chat_id=chat_id,
@@ -267,10 +276,7 @@ async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def on_startup(app):
-    await telegram_client.client.connect()
-    if not await telegram_client.client.is_user_authorized():
-        print("Telethon session not authorized!", flush=True)
-
+    await telegram_client.client.start(bot_token=TOKEN)
 
 async def on_shutdown(app):
     await telegram_client.client.disconnect()
